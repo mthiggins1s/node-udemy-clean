@@ -1,37 +1,10 @@
 const http = require('http');
-const fs = require('fs');
+const routes = require('./routes');
+console.log(routes.someText);
 
-const server = http.createServer(function(req, res) {
-    const url = req.url;
-    const method = req.method;
-        if(url === '/') {  // means URL will only be true if its a string and has a '/'.
-            res.write('<html>');
-            res.write('<head><title>Enter Message</title></head>');
-            res.write('<body><form action="/message" method="POST"><input type="text" name="message"><button type="submit">Send</button></form></body>');
-            res.write('</html>');
-            return res.end();
-        };
-        if (url === '/message' && method === 'POST') {
-            const body = []; // we will try to read the BODY of the REQUEST
-            req.on('data', (chunk) => { // allows us to listen to certain events (data event will be fired when a new chunk is ready to be read.)
-                console.log(chunk);
-                body.push(chunk); // we change the object BEHIND the body object (the data INSIDE the object) we are pushing our CHUNK into the data BODY.
-            });
-            req.on('end', () => {
-                const parsedBody = Buffer.concat(body).toString(); // creates a new BUFFER and add all the chunks from inside the BODY into it.
-                const message = parsedBody.split('=')[1];
-                fs.writeFileSync('message.txt', message);
-            });
-            res.statusCode = 302 // code 302 means "redirection"
-            res.setHeader('Location', '/');
-            return res.end();
-        }
-    res.setHeader('Content-Type', 'text/html');
-    res.write('<html>');
-    res.write('<head><title>My First Page</title></head>');
-    res.write('<body><h1>Hello from my Node.JS Server!</h1></body>');
-    res.write('</html>');
-    res.end();
+// tells node to execute the function stored in routes for incoming requests.
+const server = http.createServer(routes.handler);
+
+server.listen(3000, () => {
+  console.log('🚀 Server is running at http://localhost:3000');
 });
-
-server.listen(3000);
