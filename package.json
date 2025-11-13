@@ -1,0 +1,23 @@
+{
+  "name": "udemy",
+  "version": "1.0.0",
+  "main": "routes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mthiggins1s/node-udemy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mthiggins1s/node-udemy/issues"
+  },
+  "homepage": "https://github.com/mthiggins1s/node-udemy#readme",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
