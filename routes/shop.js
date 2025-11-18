@@ -1,8 +1,9 @@
+const path = require('path');
 const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-    res.send('<h1>Hello from Express!</h1>'); // allows us to attach a 'body' to the middleware!
+    res.sendFile(path.join(__dirname, '../', 'views', 'shop.html')); // holds the ABSOLUTE path in our filesystem
 });
 
 module.exports = router;
