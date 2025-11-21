@@ -6,8 +6,8 @@ const rootDir = require('../utilities/path'); // this will inject path from util
 const adminData = require('./admin');
 
 router.get('/', (req, res, next) => {
-    console.log('shop.js', adminData.products);
-    res.sendFile(path.join(rootDir, 'views', 'shop.html')); // holds the ABSOLUTE path in our filesystem
+    const products = adminData.products;
+    res.render('shop', {prods: products, docTitle: 'Shop'});
 });
 
 module.exports = router;
