@@ -4,11 +4,11 @@ const bodyParser = require('body-parser');
 // app needs to be defined BEFORE the server call.
 const app = express();
 
-const adminRoutes = require('./routes/admin');
+const adminData = require('./routes/admin');
 const shopRoutes =  require('./routes/shop');
 
 app.use(bodyParser.urlencoded({extended: false})); // registers a middleware function that will call 'end' and will auto parse our body that is sent through the form
-app.use('/admin', adminRoutes); // importing adminRoutes from the admin.js file
+app.use('/admin', adminData.routes); // importing adminRoutes from the admin.js file
 app.use(shopRoutes); // importing shopRoutes from the shop.js file
 app.use(express.static(path.join(__dirname, 'public'))); // serves static files
 
